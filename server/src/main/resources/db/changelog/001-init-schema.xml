@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+       http://www.liquibase.org/xml/ns/dbchangelog
+       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- account table -->
+    <changeSet id="1" author="yevhenbutko@gmail.com">
+        <createTable tableName="account">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Authorities table -->
+    <changeSet id="2" author="yevhenbutko@gmail.com">
+        <createTable tableName="authorities">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(100)" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2.1" author="yevhenbutko@gmail.com">
+        <createTable tableName="account_authority">
+            <column name="account_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey columnNames="account_id, authority_id" constraintName="pk_account_authority" tableName="account_authority"/>
+        <addForeignKeyConstraint baseColumnNames="account_id"
+                                 baseTableName="account_authority"
+                                 constraintName="fk_account_authority_account"
+                                 referencedColumnNames="id"
+                                 referencedTableName="account"/>
+        <addForeignKeyConstraint baseColumnNames="authority_id"
+                                 baseTableName="account_authority"
+                                 constraintName="fk_account_authority_authority"
+                                 referencedColumnNames="id"
+                                 referencedTableName="authorities"/>
+    </changeSet>
+    
+    <!-- Gym Pod table -->
+    <changeSet id="3" author="yevhenbutko@gmail.com">
+        <createTable tableName="gym_pod">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="location" type="VARCHAR(255)"/>
+            <column name="price" type="DECIMAL(10,2)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Gym Pod Images table (join) -->
+    <changeSet id="4" author="yevhenbutko@gmail.com">
+        <createTable tableName="gym_pod_images">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="gym_pod_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_image_gympod" referencedTableName="gym_pod" referencedColumnNames="id"/>
+            </column>
+            <column name="url" type="VARCHAR(500)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Payment table -->
+    <changeSet id="5" author="yevhenbutko@gmail.com">
+        <createTable tableName="payment">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="external_id" type="VARCHAR(255)"/>
+            <column name="metadata" type="VARCHAR"/>
+            <column name="status" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Booking table -->
+    <changeSet id="6" author="yevhenbutko@gmail.com">
+        <createTable tableName="booking">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="gym_pod_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_booking_gympod" referencedTableName="gym_pod" referencedColumnNames="id"/>
+            </column>
+
+            <column name="account_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_booking_account" referencedTableName="account" referencedColumnNames="id"/>
+            </column>
+
+            <column name="payment_id" type="BIGINT">
+                <constraints nullable="true" foreignKeyName="fk_booking_payment" referencedTableName="payment" referencedColumnNames="id"/>
+            </column>
+
+            <column name="start_time" type="TIMESTAMP"/>
+            <column name="end_time" type="TIMESTAMP"/>
+            <column name="sessions" type="INTEGER"/>
+            <column name="status" type="INTEGER"/> <!-- 1 = pending, 2 = processed, 3 - rejected -->
+            <column name="created_at" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

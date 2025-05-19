@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "899365890717",
+    "project_id": "modulegym",
+    "storage_bucket": "modulegym.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899365890717:android:1c253ce451354054fd0274",
+        "android_client_info": {
+          "package_name": "com.yevhen.moduleGym"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899365890717-obgmu61rk9d27m0m9a8oudf9qjqhr8fi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU93a36R-j-YSAbBSvgDlCslGsQVXh7IE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899365890717-obgmu61rk9d27m0m9a8oudf9qjqhr8fi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "899365890717-hm3b7obtusg6duomblr64ftdfi8dkbs5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.moduleGym"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

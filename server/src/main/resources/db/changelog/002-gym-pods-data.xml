@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+       http://www.liquibase.org/xml/ns/dbchangelog
+       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="yevhenbutko@gmail.com">
+        <insert tableName="gym_pod">
+            <column name="location" value="45.641405, 25.592397"/>
+            <column name="price" valueNumeric="2500"/>
+        </insert>
+        <insert tableName="gym_pod">
+            <column name="location" value="45.641405, 25.592397"/>
+            <column name="price" valueNumeric="3000"/>
+        </insert>
+        <insert tableName="gym_pod">
+            <column name="location" value="45.641405, 25.592397"/>
+            <column name="price" valueNumeric="2250"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

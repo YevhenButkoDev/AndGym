@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class HttpService {
 
-    final domain = "http://10.0.2.2:8080";
+    final domain = "https://and-gym-7nkye.ondigitalocean.app";
 
     Future<http.Response> authorisedGet(url) async {
         final user = FirebaseAuth.instance.currentUser;

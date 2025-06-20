@@ -42,4 +42,41 @@ class AuthService extends HttpService {
     await _googleSignIn.signOut();
     await _auth.signOut();
   }
+
+  Future<void> signIn(String email, String password) async {
+    try {
+      final userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      final user = userCredential.user;
+      if (user != null && !user.emailVerified) {
+        await FirebaseAuth.instance.signOut();
+        throw Exception("Please verify your email before signing in.");
+      }
+    } on FirebaseAuthException catch (e) {
+      throw Exception("Failed to sign in");
+    }
+  }
+
+
+  Future<String> signUp(String email, String password) async {
+    try {
+      final userCredential = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      // Send email verification
+      if (!userCredential.user!.emailVerified) {
+        await userCredential.user!.sendEmailVerification();
+        return 'Verification email sent. Please check your inbox.';
+      }
+
+      return 'Account Created';
+    } on FirebaseAuthException catch (e) {
+      throw Exception("Failed to register");
+    }
+  }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:module_gym/service/AuthService.dart';
+import 'package:module_gym/utils.dart';
 import 'package:module_gym/pages/RegistrationPage.dart';
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -8,6 +10,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _auth = AuthService();
+  final _utils = Utils();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   String? _error;
@@ -44,7 +48,15 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 24),
                 ElevatedButton(
-                  onPressed: () => {},
+                  onPressed: () async {
+                      try {
+                        _auth.signIn(_emailController.text.trim(), _passwordController.text.trim());
+                      } catch (e) {
+                        if (context.mounted) {
+                          _utils.showErrorDialog(context, e.toString());
+                        }
+                      }
+                  },
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
                   child: Text("Sign in", style: TextStyle(color: Colors.white)),
                 ),

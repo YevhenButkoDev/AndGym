@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:module_gym/service/AuthService.dart';
 
 class RegistrationPage extends StatefulWidget {
   @override
@@ -6,16 +7,29 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
+  final _authService = AuthService();
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
-  final _phoneController = TextEditingController();
+  final _passwordController = TextEditingController();
 
-  void _submitForm() {
+  void _submitForm() async {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Account created for ${_nameController.text}!')),
-      );
+      try {
+        final msg = await _authService.signUp(_emailController.text.trim(), _passwordController.text.trim());
+
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(msg)),
+          );
+        }
+      } catch (e) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Failed to create account')),
+          );
+        }
+      }
     }
   }
 
@@ -48,10 +62,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 ),
                 SizedBox(height: 16),
                 TextFormField(
-                  controller: _phoneController,
-                  decoration: InputDecoration(hintText: "Phone Number"),
-                  keyboardType: TextInputType.phone,
-                  validator: (value) => value!.isEmpty ? "Phone number is required" : null,
+                  controller: _passwordController,
+                  decoration: InputDecoration(hintText: "Password"),
+                  obscureText: true,
+                  keyboardType: TextInputType.visiblePassword,
+                  validator: (value) => value!.isEmpty ? "Password is required" : null,
                 ),
                 SizedBox(height: 24),
                 ElevatedButton(

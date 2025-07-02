@@ -21,7 +21,6 @@ public class AuthBackendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AuthBackendApplication.class, args);
-        System.out.println("Gay sex");
     }
 
 }

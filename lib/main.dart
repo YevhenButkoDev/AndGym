@@ -16,35 +16,26 @@ void main() async {
   runApp(MyApp());
 }
 
+final darkTheme = ThemeData(
+  fontFamily: 'DMSans',
+  brightness: Brightness.dark,
+  scaffoldBackgroundColor: const Color.fromRGBO(30, 31, 36, 1.0),
+  appBarTheme: AppBarTheme(
+    backgroundColor: const Color.fromRGBO(30, 31, 36, 1.0)
+  ),
+  navigationBarTheme: NavigationBarThemeData(
+    backgroundColor: const Color.fromRGBO(45, 45, 53, 1.0),
+  ),
+);
+
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'AndGym',
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-        scaffoldBackgroundColor: Colors.white,
-        inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-        textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(foregroundColor: Colors.teal),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            minimumSize: Size(double.infinity, 48),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          ),
-        ),
-        outlinedButtonTheme: OutlinedButtonThemeData(
-          style: OutlinedButton.styleFrom(
-            minimumSize: Size(double.infinity, 48),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            side: BorderSide(color: Colors.grey.shade300),
-          ),
-        ),
-      ),
+      themeMode: ThemeMode.dark,
+      darkTheme: darkTheme,
       home: AuthGate(),
     );
   }

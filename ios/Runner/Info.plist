@@ -69,5 +69,8 @@
     <key>NSCameraUsageDescription</key>
     <string>To scan cards</string>
 
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This app needs access to your location.</string>
+
 </dict>
 </plist>

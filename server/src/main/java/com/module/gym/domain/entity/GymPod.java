@@ -16,8 +16,11 @@ public class GymPod {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "location")
-    private String location;
+    @Column
+    private BigDecimal latitude;
+
+    @Column
+    private BigDecimal longitude;
 
     @Column(name = "price", precision = 10, scale = 2)
     private BigDecimal price;
@@ -27,5 +30,9 @@ public class GymPod {
 
     public Long getSessionDuration() {
         return 30L;
+    }
+
+    public String getLocation() {
+        return latitude + "," + longitude;
     }
 }

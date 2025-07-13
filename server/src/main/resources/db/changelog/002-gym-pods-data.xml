@@ -8,15 +8,18 @@
 
     <changeSet id="1" author="yevhenbutko@gmail.com">
         <insert tableName="gym_pod">
-            <column name="location" value="45.641405, 25.592397"/>
+            <column name="latitude" value="37.77624931769407"/>
+            <column name="longitude" value="-122.43298058610426"/>
             <column name="price" valueNumeric="2500"/>
         </insert>
         <insert tableName="gym_pod">
-            <column name="location" value="45.641405, 25.592397"/>
+            <column name="latitude" value="37.783491878517395"/>
+            <column name="longitude" value="-122.4180136904785"/>
             <column name="price" valueNumeric="3000"/>
         </insert>
         <insert tableName="gym_pod">
-            <column name="location" value="45.641405, 25.592397"/>
+            <column name="latitude" value="37.75621230001879"/>
+            <column name="longitude" value="-122.41310583089225"/>
             <column name="price" valueNumeric="2250"/>
         </insert>
     </changeSet>

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:module_gym/constants/AppConstants.dart';
 import 'package:module_gym/theme/Colours.dart';
 
+import '../pages/NotificationsPage.dart';
+
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
 
@@ -38,7 +40,13 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                 iconSize: 20,
                 color: Theme.of(context).neonGreen,
                 onPressed: () {
-                  Navigator.pushNamed(context, '/notifications');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) =>
+                        NotificationsPage(),
+                    ),
+                  );
                 },
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(),

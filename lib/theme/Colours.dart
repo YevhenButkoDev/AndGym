@@ -24,4 +24,8 @@ extension CustomColors on ThemeData {
   Color get redWine => brightness == Brightness.dark
       ? const Color.fromRGBO(197, 29, 29, 1.0)
       : const Color.fromRGBO(197, 29, 29, 1.0);
+
+  Color get midGrey => brightness == Brightness.dark
+      ? const Color.fromRGBO(101, 101, 101, 1.0)
+      : const Color.fromRGBO(101, 101, 101, 1.0);
 }

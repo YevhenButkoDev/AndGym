@@ -11,6 +11,7 @@ class PodFrame extends StatelessWidget {
   final VoidCallback onDetailsPressed;
   final VoidCallback onFeaturedPressed;
   final bool isFeatured;
+  final String size; // small, large
 
   const PodFrame({
     super.key,
@@ -18,7 +19,8 @@ class PodFrame extends StatelessWidget {
     required this.onBookPressed,
     required this.onDetailsPressed,
     required this.onFeaturedPressed,
-    required this.isFeatured,
+    this.isFeatured = false,
+    this.size = 'large'
   });
 
   @override
@@ -29,7 +31,7 @@ class PodFrame extends StatelessWidget {
         children: [
           SizedBox(
             width: double.infinity,
-            height: 290,
+            height: size == 'small' ? 185 : 290,
             child: Image.network(
               imageUrl,
               fit: BoxFit.cover,

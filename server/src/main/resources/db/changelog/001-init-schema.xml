@@ -57,7 +57,8 @@
             <column name="id" type="BIGSERIAL" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="location" type="VARCHAR(255)"/>
+            <column name="latitude" type="DECIMAL(20,15)"/>
+            <column name="longitude" type="DECIMAL(20,15)"/>
             <column name="price" type="DECIMAL(10,2)"/>
         </createTable>
     </changeSet>
